@@ -1,0 +1,17 @@
+{
+  "xsappname": "iot-integration-svc-{CUSTOMER_TENANT}",
+  "tenant-mode": "dedicated",
+  "scopes": [
+    {
+      "name": "$XSAPPNAME.JOBSCHEDULER",
+      "description": "job scheduler scope",
+      "grant-as-authority-to-apps": ["jobscheduler"]
+    }
+  ],
+  "role-templates": [
+  ],
+  "authorities": [
+    "$ACCEPT_GRANTED_AUTHORITIES",
+    "$XSAPPNAME.JOBSCHEDULER"
+  ]
+}
