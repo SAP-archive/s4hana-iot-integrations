@@ -254,15 +254,15 @@ class s4 {
     console.log(bpList);
     console.log("soItemList:");
     console.log(soItemList);
-    
-    // Build a sales order map for lookup 
+
+    // Build a sales order map for lookup
     var soItemMap = {};
     for(var i=0; i<soItemList.length; i++) {
       var soItem = soItemList[i];
       soItemMap[s4.getKey(soItem.SalesOrder, soItem.SalesOrderItem)] = soItem;
     }
 
-    // Build a business partner map for lookup 
+    // Build a business partner map for lookup
     var bpMapById = {};
     for(var i=0; i<bpList.length; i++) {
       bpMapById[bpList[i].BusinessPartner] = bpList[i];
@@ -283,37 +283,40 @@ class s4 {
         var hu = huItemInfo.hu;
         var bpSoldToParty = bpMapById[d.SoldToParty];
 
-        // Get Contact Person email
-        var bpContactId = contactMapByD[d.DeliveryDocument];
-        var email = emailCache[bpContactId];
-        if(email==undefined)
-          email = emailCache[bpContactId] = s4.getEmailFromContact(bpMapById[bpContactId]);
+        if (bpSoldToParty) {
 
-        // Get the Sales Order Item
-        var soItem = soItemMap[s4.getKey(dItem.ReferenceSDDocument, dItem.ReferenceSDDocumentItem)];
-        var so = soItem ? soItem.to_SalesOrder : undefined;
+          // Get Contact Person email
+          var bpContactId = contactMapByD[d.DeliveryDocument];
+          var email = emailCache[bpContactId];
+          if(email==undefined)
+            email = emailCache[bpContactId] = s4.getEmailFromContact(bpMapById[bpContactId]);
 
-        // Build up result set to be used to update Leonardo IoT
-        result.push({
-          "HandlingUnitId": hu.HandlingUnitExternalID,
-          "MaterialType": dItem.MaterialGroup,
-          "MaterialNumber": dItem.Material,
-          "basicData": {
-            "DeliveryItemText": dItem.DeliveryDocumentItemText,
-            "SalesOrder": dItem.ReferenceSDDocument,
-            "SalesOrderItem": dItem.ReferenceSDDocumentItem,
-            "PackagingMaterial": hu.PackagingMaterial,
-            "Delivery": d.DeliveryDocument,
-            "DeliveryItem": dItem.DeliveryDocumentItem,
-            "SoldToPartyName": bpSoldToParty.BusinessPartnerName,
-            "Quantity": dItem.ActualDeliveryQuantity,
-            "QuantityUnit": dItem.DeliveryQuantityUnit,
-            "ContactEmail": email,
-            "NetAmount": soItem ? soItem.NetAmount : "",
-            "NetAmountCurrency": soItem ? soItem.TransactionCurrency : "",
-            "PurchaseOrder": so ? so.PurchaseOrderByCustomer : "",
-          }
-        });
+          // Get the Sales Order Item
+          var soItem = soItemMap[s4.getKey(dItem.ReferenceSDDocument, dItem.ReferenceSDDocumentItem)];
+          var so = soItem ? soItem.to_SalesOrder : undefined;
+
+          // Build up result set to be used to update Leonardo IoT
+          result.push({
+            "HandlingUnitId": hu.HandlingUnitExternalID,
+            "MaterialType": dItem.MaterialGroup,
+            "MaterialNumber": dItem.Material,
+            "basicData": {
+              "DeliveryItemText": dItem.DeliveryDocumentItemText,
+              "SalesOrder": dItem.ReferenceSDDocument,
+              "SalesOrderItem": dItem.ReferenceSDDocumentItem,
+              "PackagingMaterial": hu.PackagingMaterial,
+              "Delivery": d.DeliveryDocument,
+              "DeliveryItem": dItem.DeliveryDocumentItem,
+              "SoldToPartyName": bpSoldToParty.BusinessPartnerName,
+              "Quantity": dItem.ActualDeliveryQuantity,
+              "QuantityUnit": dItem.DeliveryQuantityUnit,
+              "ContactEmail": email,
+              "NetAmount": soItem ? soItem.NetAmount : "",
+              "NetAmountCurrency": soItem ? soItem.TransactionCurrency : "",
+              "PurchaseOrder": so ? so.PurchaseOrderByCustomer : "",
+            }
+          });
+        }
       }
     }
     result.reverse(); // return in order received for clarity
@@ -341,7 +344,7 @@ class s4 {
 
     return "";
   }
-  
+
   /**
    *
    */
