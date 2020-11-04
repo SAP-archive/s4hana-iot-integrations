@@ -1,0 +1,34 @@
+---
+applications:
+- name: iot-integration-svc
+  host: iot-integration-svc-{CUSTOMER_TENANT}
+  path: js
+  instances: 1
+  memory: 128M
+  env:
+    IoTIntegration: >
+      {
+        "package":"{PACKAGE_NAME}",
+        "basicPropertySet":"{BASIC_PROPERTY_SET_NAME}",
+        "objectGroup":"{AUTHORIZATION_OBJECT_GROUP}"
+      }
+    IoTService: >
+      {
+      	"instanceId": "{IOT_SERVICE_INSTANCE_ID}",
+      	"cockpitUrl": "{IOT_COCKPIT_URL}",
+      	"apiUrl": "{IOT_API_URL}",
+      	"username": "{IOT_API_USERNAME}",
+        "password": "{IOT_API_PASSWORD}",
+        "tenantId":"{IOT_TENANT_ID}"
+      }
+    SAP_JWT_TRUST_ACL: >
+      [
+        {"clientid":"*","identityzone":"*"}
+      ]
+
+  services:
+    - {LEONARDO_IOT_SERVICE_INSTANCE}
+    - {XSUAA_SERVICE_INSTANCE}
+    - {DESTINATION_SERVICE_INSTANCE}
+    - {CONNECTIVITY-SERVICE_INSTANCE}
+    - {JOB_SCHEDULER_INSTANCE}

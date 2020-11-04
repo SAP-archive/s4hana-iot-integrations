@@ -1,0 +1,30 @@
+{
+  "name": "iot-integration-svc",
+  "description": "IoT Integration Service",
+  "version": "0.0.1",
+  "dependencies": {
+    "@sap/xsenv": "^2.2.0",
+    "@sap/xssec": "^2.2.3",
+    "axios": "^0.19.0",
+    "express": "^4.17.1",
+    "passport": "^0.4.0",
+    "request": "^2.88.2",
+    "request-promise": "^4.2.5",
+    "winston": "^3.2.1"
+  },
+  "engines": {
+    "node": "6.x.x || 8.x.x || 10.x.x"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "debug": "node --inspect server.js",
+    "test": "nyc --reporter=html --reporter=text mocha",
+    "test-debug": "./node_modules/.bin/mocha --inspect-brk --reporter spec"
+  },
+  "devDependencies": {
+    "axios-mock-adapter": "^1.17.0",
+    "chai": "^4.2.0",
+    "mocha": "^6.2.2",
+    "nyc": "^14.1.1"
+  }
+}
