@@ -1,0 +1,13 @@
+<core:FragmentDefinition
+	xmlns="sap.ui.comp.valuehelpdialog"
+	xmlns:core="sap.ui.core">
+	<ValueHelpDialog
+		title="Sensor"
+		ok=".onSensorValueHelpOk"
+		cancel=".onSensorValueHelpCancel"
+		afterClose=".onSensorValueHelpAfterClose"
+		supportMultiselect="false"
+		key="alternateId"
+	>
+	</ValueHelpDialog>
+</core:FragmentDefinition >

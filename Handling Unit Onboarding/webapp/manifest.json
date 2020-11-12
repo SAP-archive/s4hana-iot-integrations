@@ -1,0 +1,185 @@
+{
+	"_version": "1.17.0",
+	"sap.app": {
+		"_version": "1.1.0",
+		"id": "HandlingUnitMappingApp",
+		"type": "application",
+		"i18n": "i18n/i18n.properties",
+		"applicationVersion": {
+			"version": "1.0.0"
+		},
+		"title": "{{appTitle}}",
+		"description": "{{appDescription}}",
+		"resources": "resources.json",
+		"ach": "ach",
+		"dataSources": {
+			"HandlingUnitService": {
+				"uri": "/sap/opu/odata/sap/API_HANDLING_UNIT",
+				"type": "OData"
+			},
+			"SensorService": {
+				"uri": "/iot/core/api/v1/tenant/999999999/sensors",
+				"type": "JSON"
+			},
+			"SensorTypeService": {
+				"uri": "/iot/core/api/v1/tenant/999999999/sensorTypes",
+				"type": "JSON"
+			},
+			"GatewayService": {
+				"uri": "/iot/core/api/v1/tenant/999999999/gateways",
+				"type": "JSON"
+			},
+			"DeviceService": {
+				"uri": "/iot/core/api/v1/tenant/999999999/devices",
+				"type": "JSON"
+			},
+			"deploymentParameters": {
+				"uri": "deploymentParameters/DeploymentParameters.json",
+				"type": "JSON"
+			}
+		}
+	},
+	"sap.ui": {
+		"_version": "1.1.0",
+		"technology": "UI5",
+		"fullWidth": true,
+		"icons": {
+			"icon": "",
+			"favIcon": "",
+			"phone": "",
+			"phone@2": "",
+			"tablet": "",
+			"tablet@2": ""
+		},
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		},
+		"supportedThemes": [
+			"sap_belize_plus"
+		]
+	},
+	"sap.ui5": {
+		"_version": "1.1.0",
+		"rootView": {
+			"viewName": "HandlingUnitMappingApp.view.Main",
+			"type": "XML"
+		},
+		"dependencies": {
+			"minUI5Version": "1.30.0",
+			"libs": {
+				"sap.ui.core": {},
+				"sap.m": {},
+				"sap.ui.layout": {}
+			}
+		},
+		"contentDensities": {
+			"compact": true,
+			"cozy": true
+		},
+		"models": {
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"settings": {
+					"bundleName": "HandlingUnitMappingApp.i18n.i18n"
+				}
+			},
+			"deploymentParametersModel": {
+				"type": "sap.ui.model.json.JSONModel",
+				"dataSource": "deploymentParameters"
+			},
+			"HandlingUnitsModel": {
+				"type": "sap.ui.model.odata.v2.ODataModel",
+				"settings": {
+					"defaultOperationMode": "Server",
+					"defaultBindingMode": "OneWay",
+					"defaultCountMode": "Request"
+				},
+				"dataSource": "HandlingUnitService",
+				"preload": true
+			},
+			"SensorsModel": {
+				"type": "sap.ui.model.json.JSONModel",
+				"dataSource": "SensorService",
+				"preload": true
+			},
+			"SensorTypesModel": {
+				"type": "sap.ui.model.json.JSONModel",
+				"dataSource": "SensorTypeService",
+				"preload": true
+			},
+			"GatewaysModel": {
+				"type": "sap.ui.model.json.JSONModel",
+				"dataSource": "GatewayService",
+				"preload": true
+			},
+			"DevicesModel": {
+				"type": "sap.ui.model.json.JSONModel",
+				"dataSource": "DeviceService",
+				"preload": true
+			},
+			"IoTSensorsModel": {
+				"type": "sap.ui.model.json.JSONModel",
+				"settings": {
+					"defaultBindingMode": "OneWay"
+				}
+			},
+			"ListItemsModel": {
+				"type": "sap.ui.model.json.JSONModel",
+				"settings": {
+					"defaultBindingMode": "OneWay"
+				}
+			},
+			"ErrorMessagesModel": {
+				"type": "sap.ui.model.json.JSONModel"
+			}
+		},
+		"resources": {
+			"css": [
+				{
+					"uri": "css/style.css"
+				}
+			],
+			"js": [
+				{
+					"uri": "libs/quagga.min.js"
+				}
+			]
+		},
+		"routing": {
+			"config": {
+				"routerClass": "sap.m.routing.Router",
+				"viewType": "XML",
+				"async": true,
+				"viewPath": "HandlingUnitMappingApp.view",
+				"controlAggregation": "pages",
+				"controlId": "idAppControl"
+			},
+			"targets": {
+				"TargetMainView": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearAggregation": true,
+					"viewName": "Main",
+					"viewId": "Main"
+				}
+			},
+			"routes": [
+				{
+					"name": "RouteMainView",
+					"pattern": "RouteMainView",
+					"titleTarget": "",
+					"greedy": false,
+					"target": [
+						"TargetMainView"
+					]
+				}
+			]
+		}
+	},
+	"sap.platform.hcp": {
+		"uri": "webapp",
+		"_version": "1.1.0"
+	}
+}

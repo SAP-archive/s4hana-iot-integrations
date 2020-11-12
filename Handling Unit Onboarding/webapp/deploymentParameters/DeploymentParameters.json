@@ -1,0 +1,12 @@
+{
+	"prefix_HU": "HU-",
+	"suffix_HU": "",
+	"prefix_BarCode": "",
+	"suffix_BarCode": "",
+	"barcodeType": "code_128_reader",
+	"mapping_id": "1381bf13-cf9c-435f-af38-dd21934660c5",
+	"_thingType": "iot.iot.hum.package:hum_thing_type",
+	"_objectGroup": "650DF6F31FE44D1FAD2B2A4A22134CCC",
+	"warehouse": "1050"
+	
+}

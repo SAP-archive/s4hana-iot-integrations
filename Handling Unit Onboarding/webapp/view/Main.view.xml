@@ -1,0 +1,171 @@
+<mvc:View xmlns:forms="sap.ui.layout.form" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
+	xmlns:l="sap.ui.layout" xmlns:core="sap.ui.core" appWidthLimited="true" controllerName="HandlingUnitMappingApp.controller.Main">
+	<App id="idAppControl">
+		<pages>
+			<Page id="mainPage" title="{i18n>title}" backgroundDesign="List">
+				<content>
+					<List noDataText="{i18n>noDataLoadedText}" id="mappingList" headerText="{i18n>title}" growing="true" showNoData="false"
+						items="{path: 'ListItemsModel>/'}" sticky="HeaderToolbar">
+						<items>
+							<CustomListItem xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m">
+								<content>
+									<Panel xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" class="sapUiSizeCompact" width="auto"
+										backgroundDesign="Solid" expandable="true"
+										expanded="{= (${ListItemsModel>/}.indexOf(${ListItemsModel>}) === ${ListItemsModel>/}.length-1) &amp;&amp; (${ListItemsModel>sensor/alternateId}.length &gt; 0) ? true : false }">
+										<content>
+											<VBox>
+												<forms:Form editable="false">
+													<forms:layout>
+														<forms:ColumnLayout columnsM="2" columnsL="2" columnsXL="4"/>
+													</forms:layout>
+													<forms:formContainers>
+														<forms:FormContainer title="{i18n>sensor}">
+															<forms:formElements>
+																<forms:FormElement xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:l="sap.ui.layout"
+																	xmlns:core="sap.ui.core" xmlns:forms="sap.ui.layout.form" label="{i18n>alternateID}">
+																	<forms:fields>
+																		<Text xmlns="sap.m" text="{ListItemsModel>sensor/alternateId}"/>
+																	</forms:fields>
+																</forms:FormElement>
+																<forms:FormElement label="{i18n>id}">
+																	<forms:fields>
+																		<Text text="{ListItemsModel>sensor/sensorId}"/>
+																	</forms:fields>
+																</forms:FormElement>
+																<forms:FormElement xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:l="sap.ui.layout"
+																	xmlns:core="sap.ui.core" xmlns:forms="sap.ui.layout.form" label="{i18n>name}">
+																	<forms:fields>
+																		<Text xmlns="sap.m" text="{ListItemsModel>sensor/name}"/>
+																	</forms:fields>
+																</forms:FormElement>
+																<forms:FormElement label="{i18n>created}">
+																	<forms:fields>
+																		<Text text="{ path: 'ListItemsModel>sensor/created', formatter: '.formatIotTimestamp'}"/>
+																	</forms:fields>
+																</forms:FormElement>
+																<forms:FormElement label="{i18n>gateway}">
+																	<forms:fields>
+																		<Text xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns="sap.m" text="{ListItemsModel>sensor/gateway}"/>
+																	</forms:fields>
+																</forms:FormElement>
+																<forms:FormElement xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" label="{i18n>status}">
+																	<forms:fields>
+																		<ObjectStatus xmlns:forms="sap.ui.layout.form" xmlns:l="sap.ui.layout" xmlns:core="sap.ui.core" xmlns:html="http://www.w3.org/1999/xhtml"
+																			xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" text="{ListItemsModel>sensor/status}" state="Success"/>
+																	</forms:fields>
+																</forms:FormElement>
+															</forms:formElements>
+														</forms:FormContainer>
+														<forms:FormContainer title="{i18n>handlingUnit}">
+															<forms:formElements>
+																<forms:FormElement label="{i18n>handlingUnitId}">
+																	<forms:fields>
+																		<Text text="{ListItemsModel>handlingUnit/handlingUnitId}"/>
+																	</forms:fields>
+																</forms:FormElement>
+																<forms:FormElement label="{i18n>currentReference}">
+																	<forms:fields>
+																		<Text text="{ListItemsModel>handlingUnit/reference}"/>
+																	</forms:fields>
+																</forms:FormElement>
+																<forms:FormElement label="{i18n>created}">
+																	<forms:fields>
+																		<Text text="{ path: 'ListItemsModel>handlingUnit/created' , formatter: '.formatHuTimestamp'} "/>
+																	</forms:fields>
+																</forms:FormElement>
+																<forms:FormElement label="{i18n>status}">
+																	<forms:fields>
+																		<ObjectStatus xmlns:forms="sap.ui.layout.form" xmlns:l="sap.ui.layout" xmlns:core="sap.ui.core" xmlns:html="http://www.w3.org/1999/xhtml"
+																			xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" text="{ListItemsModel>handlingUnit/status}" state="Success"/>
+																	</forms:fields>
+																</forms:FormElement>
+																<forms:FormElement label="{i18n>packagingMaterials}">
+																	<forms:fields>
+																		<Text text="{ListItemsModel>handlingUnit/material}"/>
+																	</forms:fields>
+																</forms:FormElement>
+																<forms:FormElement label="{i18n>packagingMaterialType}">
+																	<forms:fields>
+																		<Text text="{ListItemsModel>handlingUnit/materialType}"/>
+																	</forms:fields>
+																</forms:FormElement>
+															</forms:formElements>
+														</forms:FormContainer>
+													</forms:formContainers>
+												</forms:Form>
+											</VBox>
+										</content>
+										<headerToolbar>
+											<Toolbar xmlns:forms="sap.ui.layout.form" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
+												id="toolbar1_1587121587705" height="auto">
+												<content>
+													<Label xmlns:core="sap.ui.core" xmlns:forms="sap.ui.layout.form" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc"
+														xmlns="sap.m" xmlns:sap.ui.layout="sap.ui.layout" width="auto" id="label0" design="Bold" vAlign="Middle"
+														text="{= ${ListItemsModel>/}.indexOf(${ListItemsModel>}) + 1+&quot;.&quot; }"/>
+													<forms:Form xmlns:sap.ui.layout="sap.ui.layout" xmlns:core="sap.ui.core" xmlns:forms="sap.ui.layout.form"
+														xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:sap.ui.layout.form="sap.ui.layout.form"
+														editable="true" id="form1" width="100%">
+														<forms:formContainers>
+															<forms:FormContainer expanded="false">
+																<forms:formElements>
+																	<forms:FormElement label="{i18n>sensor}">
+																		<forms:fields>
+																			<Input fieldGroupIds="barCodeInput" class="preventBarCodeIdLost" xmlns="sap.m" width="100%" required="true" submit="focusNext" 
+																				showValueHelp="true" valueHelpRequest="onSensorValueHelpRequested" value="{ListItemsModel>sensor/alternateId}"/>
+																		</forms:fields>
+																	</forms:FormElement>
+																</forms:formElements>
+															</forms:FormContainer>
+															<forms:FormContainer expanded="false">
+																<forms:formElements>
+																	<forms:FormElement label="{i18n>handlingUnit}">
+																		<forms:fields>
+																			<Input fieldGroupIds="barCodeInput" class="preventBarCodeIdLost" xmlns="sap.m" width="100%" required="true" showValueHelp="true" submit="focusNext"
+																				value="{ListItemsModel>handlingUnit/handlingUnitId}" valueHelpRequest="onHuValueHelpRequested"/>
+																		</forms:fields>
+																	</forms:FormElement>
+																</forms:formElements>
+															</forms:FormContainer>
+														</forms:formContainers>
+														<forms:layout>
+															<forms:ResponsiveGridLayout columnsM="2" labelSpanM="3" labelSpanL="3" singleContainerFullSize="false" backgroundDesign="Solid"
+																adjustLabelSpan="false"/>
+														</forms:layout>
+													</forms:Form>
+													<Button xmlns:sap.ui.layout="sap.ui.layout" xmlns:core="sap.ui.core" xmlns:forms="sap.ui.layout.form"
+														xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" id="button0" type="Transparent"
+														icon="sap-icon://decline" press="removeListItem"/>
+												</content>
+											</Toolbar>
+										</headerToolbar>
+									</Panel>
+								</content>
+							</CustomListItem>
+						</items>
+						<headerToolbar>
+							<Toolbar xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" width="100%">
+								<content>
+									<SearchField xmlns="sap.m" placeholder="{i18n>searchPlaceholder}" width="250px" liveChange="liveSearch"/>
+									<ToolbarSpacer/>
+									<Button class="sapUiHideOnDesktop" id="barCodeButtonId" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" icon="sap-icon://bar-code"
+										press="onPressBarCodeIcon"/>
+									<Button xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" icon="sap-icon://add" press="addListItem"/>
+								</content>
+							</Toolbar>
+						</headerToolbar>
+					</List>
+				</content>
+				<footer>
+					<Toolbar xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" width="100%">
+						<content>
+							<Button visible="{=!!${messages>/}.length}" id="messagePopoverBtn" icon="sap-icon://message-error" press="handleMessagePopoverPress"/>
+							<ToolbarSpacer/>
+							<Button xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
+								xmlns:action="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" text="{i18n>save}" type="Emphasized" press="submitAction"/>
+						</content>
+					</Toolbar>
+				</footer>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>
