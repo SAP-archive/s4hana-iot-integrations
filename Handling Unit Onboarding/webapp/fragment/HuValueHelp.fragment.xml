@@ -1,0 +1,6 @@
+<core:FragmentDefinition xmlns="sap.ui.comp.valuehelpdialog" xmlns:core="sap.ui.core">
+	<ValueHelpDialog title="Handling Unit" ok=".onHuValueHelpOk" cancel=".onHuValueHelpCancel" afterClose=".onHuValueHelpAfterClose"
+		supportMultiselect="false" key="HandlingUnitExternalID">
+		<content/>
+	</ValueHelpDialog>
+</core:FragmentDefinition>
